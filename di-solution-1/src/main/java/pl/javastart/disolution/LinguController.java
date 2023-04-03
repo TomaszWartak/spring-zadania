@@ -15,9 +15,9 @@ class LinguController {
     private static final int TEST = 1;
     private static final int CLOSE_APP = 2;
 
-    private EntryRepository entryRepository;
-    private FileService fileService;
-    private Scanner scanner;
+    private final EntryRepository entryRepository;
+    private final FileService fileService;
+    private final Scanner scanner;
 
     @Autowired
     LinguController(EntryRepository entryRepository, FileService fileService, Scanner scanner) {
@@ -29,7 +29,7 @@ class LinguController {
     void mainLoop() {
         System.out.println("Witaj w aplikacji LinguApp");
         int option = UNDEFINED;
-        while(option != CLOSE_APP) {
+        while (option != CLOSE_APP) {
             printMenu();
             option = chooseOption();
             executeOption(option);
@@ -38,32 +38,25 @@ class LinguController {
 
     private void executeOption(int option) {
         switch (option) {
-            case ADD_ENTRY:
-                addEntry();
-                break;
-            case TEST:
-                test();
-                break;
-            case CLOSE_APP:
-                close();
-                break;
-            default:
-                System.out.println("Opcja niezdefiniowana");
+            case ADD_ENTRY -> addEntry();
+            case TEST -> test();
+            case CLOSE_APP -> close();
+            default -> System.out.println("Opcja niezdefiniowana");
         }
     }
 
     private void test() {
-        if(entryRepository.isEmpty()) {
+        if (entryRepository.isEmpty()) {
             System.out.println("Dodaj przynajmniej jedną frazę do bazy.");
             return;
         }
-        final int testSize = entryRepository.size() > 10? 10 : entryRepository.size();
+        final int testSize = Math.min(entryRepository.size(), 10);
         Set<Entry> randomEntries = entryRepository.getRandomEntries(testSize);
         int score = 0;
         for (Entry entry : randomEntries) {
             System.out.printf("Podaj tłumaczenie dla :\"%s\"\n", entry.getOriginal());
             String translation = scanner.nextLine();
-            if(entry.getTranslation().equalsIgnoreCase(translation)) {
+            if (entry.getTranslation().equalsIgnoreCase(translation)) {
                 System.out.println("Odpowiedź poprawna");
                 score++;
             } else {
@@ -103,14 +96,15 @@ class LinguController {
         int option;
         try {
             option = scanner.nextInt();
-        } catch(InputMismatchException e) {
+        } catch (InputMismatchException e) {
             option = UNDEFINED;
         } finally {
             scanner.nextLine();
         }
-        if(option > UNDEFINED && option <= CLOSE_APP)
+        if (option > UNDEFINED && option <= CLOSE_APP) {
             return option;
-        else
+        } else {
             return UNDEFINED;
+        }
     }
 }

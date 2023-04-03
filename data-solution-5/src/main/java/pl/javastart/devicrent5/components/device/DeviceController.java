@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.javastart.devicrent5.components.category.Category;
 import pl.javastart.devicrent5.components.category.CategoryRepository;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -13,9 +13,9 @@ import java.util.Scanner;
 @Service
 public class DeviceController {
 
-    private Scanner scanner;
-    private DeviceRepository deviceRepository;
-    private CategoryRepository categoryRepository;
+    private final Scanner scanner;
+    private final DeviceRepository deviceRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
     public DeviceController(Scanner scanner, DeviceRepository deviceRepository, CategoryRepository categoryRepository) {

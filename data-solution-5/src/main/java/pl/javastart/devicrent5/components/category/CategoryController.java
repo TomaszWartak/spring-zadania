@@ -10,8 +10,8 @@ import java.util.Scanner;
 @Service
 public class CategoryController {
 
-    private Scanner scanner;
-    private CategoryRepository categoryRepository;
+    private final Scanner scanner;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
     public CategoryController(Scanner scanner, CategoryRepository categoryRepository) {

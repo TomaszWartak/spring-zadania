@@ -25,8 +25,9 @@ enum Options {
     }
 
     static Options numberToCategory(int number) {
-        if(number < 1 || number > values().length)
+        if (number < 1 || number > values().length) {
             throw new InvalidOptionException();
-        return values()[number-1];
+        }
+        return values()[number - 1];
     }
 }

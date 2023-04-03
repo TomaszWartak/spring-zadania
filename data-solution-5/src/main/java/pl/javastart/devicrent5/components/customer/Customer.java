@@ -2,7 +2,7 @@ package pl.javastart.devicrent5.components.customer;
 
 import pl.javastart.devicrent5.components.device.Device;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

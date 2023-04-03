@@ -2,7 +2,7 @@ package pl.javastart.devicrent5.components.category;
 
 import pl.javastart.devicrent5.components.device.Device;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

@@ -12,14 +12,17 @@ import java.util.Scanner;
 @Controller
 public class ApplicationController {
 
-    private Scanner scanner;
-    private DeviceController deviceController;
-    private CategoryController categoryController;
-    private CustomerController customerController;
-    private RentController rentController;
+    private final Scanner scanner;
+    private final DeviceController deviceController;
+    private final CategoryController categoryController;
+    private final CustomerController customerController;
+    private final RentController rentController;
 
-    public ApplicationController(Scanner scanner, DeviceController deviceController, CategoryController categoryController,
-                                 CustomerController customerController, RentController rentController) {
+    public ApplicationController(Scanner scanner,
+                                 DeviceController deviceController,
+                                 CategoryController categoryController,
+                                 CustomerController customerController,
+                                 RentController rentController) {
         this.scanner = scanner;
         this.deviceController = deviceController;
         this.categoryController = categoryController;
@@ -33,7 +36,7 @@ public class ApplicationController {
             printOptions();
             option = readOption();
             executeOption(option);
-        } while(option != Options.EXIT);
+        } while (option != Options.EXIT);
     }
 
     private void printOptions() {
@@ -44,14 +47,14 @@ public class ApplicationController {
     private Options readOption() {
         boolean correctOptionSelected = false;
         Options option = null;
-        while(!correctOptionSelected) {
+        while (!correctOptionSelected) {
             System.out.println("Podaj ID opcji:");
             int optionId = scanner.nextInt();
             scanner.nextLine();
             try {
                 option = Options.numberToCategory(optionId);
                 correctOptionSelected = true;
-            } catch(InvalidOptionException e) {
+            } catch (InvalidOptionException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -60,32 +63,15 @@ public class ApplicationController {
 
     private void executeOption(Options option) {
         switch (option) {
-            case ADD_DEVICE:
-                deviceController.createDevice();
-                break;
-            case ADD_CATEGORY:
-                categoryController.createCategory();
-                break;
-            case ADD_CUSTOMER:
-                customerController.createCustomer();
-                break;
-            case RENT:
-                rentController.rentDeviceToCustomer();
-                break;
-            case REMOVE_DEVICE:
-                deviceController.removeDevice();
-                break;
-            case REMOVE_CATEGORY:
-                categoryController.removeCategory();
-                break;
-            case REMOVE_CUSTOMER:
-                customerController.removeCustomer();
-                break;
-            case SEARCH_DEVICE:
-                deviceController.searchDevice();
-                break;
-            case EXIT:
-                closeApp();
+            case ADD_DEVICE -> deviceController.createDevice();
+            case ADD_CATEGORY -> categoryController.createCategory();
+            case ADD_CUSTOMER -> customerController.createCustomer();
+            case RENT -> rentController.rentDeviceToCustomer();
+            case REMOVE_DEVICE -> deviceController.removeDevice();
+            case REMOVE_CATEGORY -> categoryController.removeCategory();
+            case REMOVE_CUSTOMER -> customerController.removeCustomer();
+            case SEARCH_DEVICE -> deviceController.searchDevice();
+            case EXIT -> closeApp();
         }
     }
 

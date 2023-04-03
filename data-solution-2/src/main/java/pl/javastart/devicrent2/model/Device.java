@@ -1,11 +1,12 @@
 package pl.javastart.devicrent2.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="device")
+@Table(name = "device")
 public class Device {
 
     @Id
@@ -21,8 +22,8 @@ public class Device {
     private Category category;
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "device_customers",
-            joinColumns = {@JoinColumn(name="device_id", referencedColumnName="id")},
-            inverseJoinColumns = {@JoinColumn(name="customer_id", referencedColumnName="id")}
+            joinColumns = {@JoinColumn(name = "device_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")}
     )
     private List<Customer> customers = new ArrayList<>();
 

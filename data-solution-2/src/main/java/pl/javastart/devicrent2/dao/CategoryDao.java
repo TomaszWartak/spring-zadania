@@ -3,9 +3,9 @@ package pl.javastart.devicrent2.dao;
 import org.springframework.stereotype.Repository;
 import pl.javastart.devicrent2.model.Category;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 @Repository
 public class CategoryDao {

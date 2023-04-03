@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 class FileService {
 
-    private String fileName;
+    private final String fileName;
 
     FileService(@Value("${filename}") String fileName) {
         this.fileName = fileName;

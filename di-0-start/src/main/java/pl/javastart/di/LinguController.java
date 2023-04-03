@@ -11,9 +11,9 @@ class LinguController {
     private static final int TEST = 1;
     private static final int CLOSE_APP = 2;
 
-    private EntryRepository entryRepository = new EntryRepository();
-    private FileService fileService = new FileService();
-    private Scanner scanner = new Scanner(System.in);
+    private final EntryRepository entryRepository = new EntryRepository();
+    private final FileService fileService = new FileService();
+    private final Scanner scanner = new Scanner(System.in);
 
     void mainLoop() {
         System.out.println("Witaj w aplikacji LinguApp");
@@ -27,17 +27,10 @@ class LinguController {
 
     private void executeOption(int option) {
         switch (option) {
-            case ADD_ENTRY:
-                addEntry();
-                break;
-            case TEST:
-                test();
-                break;
-            case CLOSE_APP:
-                close();
-                break;
-            default:
-                System.out.println("Opcja niezdefiniowana");
+            case ADD_ENTRY -> addEntry();
+            case TEST -> test();
+            case CLOSE_APP -> close();
+            default -> System.out.println("Opcja niezdefiniowana");
         }
     }
 
@@ -46,7 +39,7 @@ class LinguController {
             System.out.println("Dodaj przynajmniej jedną frazę do bazy.");
             return;
         }
-        final int testSize = entryRepository.size() > 10? 10 : entryRepository.size();
+        final int testSize = Math.min(entryRepository.size(), 10);
         Set<Entry> randomEntries = entryRepository.getRandomEntries(testSize);
         int score = 0;
         for (Entry entry : randomEntries) {

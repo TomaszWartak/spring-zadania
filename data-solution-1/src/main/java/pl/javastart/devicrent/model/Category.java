@@ -1,12 +1,12 @@
 package pl.javastart.devicrent.model;
 
-import javax.persistence.*;
-import java.util.Collection;
+import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 
     @Id

@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @Service
 class FileService {
 
-    private String fileName;
-    private CipherService cipherService;
+    private final String fileName;
+    private final CipherService cipherService;
 
     @Autowired
     FileService(@Value("${filename}") String fileName, CipherService cipherService) {

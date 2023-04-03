@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Profile("prod")
 class CaesarCipherService implements CipherService {
-
     private static final int SHIFT = 3;
 
     @Override

@@ -6,8 +6,7 @@ import pl.javastart.disolution.formatter.TextFormatter;
 
 @Component
 class ConsoleOutputWriter {
-
-    private TextFormatter textFormatter;
+    private final TextFormatter textFormatter;
 
     @Autowired
     ConsoleOutputWriter(TextFormatter textFormatter) {

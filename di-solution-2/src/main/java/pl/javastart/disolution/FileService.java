@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 class FileService {
-    private String fileName = "data.csv";
+    private final String fileName = "data.csv";
 
     List<Entry> readAllFile() throws IOException {
         return Files.readAllLines(Paths.get(fileName))

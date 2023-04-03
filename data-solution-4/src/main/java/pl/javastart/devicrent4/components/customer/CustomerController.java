@@ -9,8 +9,8 @@ import java.util.Scanner;
 @Service
 public class CustomerController {
 
-    private Scanner scanner;
-    private CustomerRepository customerRepository;
+    private final Scanner scanner;
+    private final CustomerRepository customerRepository;
 
     @Autowired
     public CustomerController(Scanner scanner, CustomerRepository customerRepository) {

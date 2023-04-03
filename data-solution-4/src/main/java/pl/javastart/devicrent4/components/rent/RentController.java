@@ -6,16 +6,17 @@ import pl.javastart.devicrent4.components.customer.CustomerRepository;
 import pl.javastart.devicrent4.components.device.Device;
 import pl.javastart.devicrent4.components.device.DeviceRepository;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
+
 import java.util.Optional;
 import java.util.Scanner;
 
 @Service
 public class RentController {
 
-    private Scanner scanner;
-    private DeviceRepository deviceRepository;
-    private CustomerRepository customerRepository;
+    private final Scanner scanner;
+    private final DeviceRepository deviceRepository;
+    private final CustomerRepository customerRepository;
 
     public RentController(Scanner scanner, DeviceRepository deviceRepository, CustomerRepository customerRepository) {
         this.scanner = scanner;
@@ -27,7 +28,7 @@ public class RentController {
     public void rentDeviceToCustomer() {
         try {
             rent();
-        } catch(RentException e) {
+        } catch (RentException e) {
             System.err.println(e.getMessage());
         }
     }
@@ -39,16 +40,17 @@ public class RentController {
         long deviceId = scanner.nextLong();
         Optional<Customer> customer = customerRepository.findById(customerId);
         Optional<Device> device = deviceRepository.findById(deviceId);
-        if(customer.isPresent())
+        if (customer.isPresent())
             device.ifPresentOrElse(dev -> {
-                if(dev.getQuantity() > dev.getCustomers().size())
+                if (dev.getQuantity() > dev.getCustomers().size())
                     dev.addCustomer(customer.get());
                 else
                     throw new RentException("Brak wolnych urządzeń o wskazanym ID");
             }, () -> {
                 throw new RentException("Brak urządzenia o wskazanym ID");
             });
-        else
+        else {
             throw new RentException("Brak klienta o wskazanym ID");
+        }
     }
 }

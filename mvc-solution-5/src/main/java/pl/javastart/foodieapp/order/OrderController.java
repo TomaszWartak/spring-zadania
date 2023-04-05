@@ -16,10 +16,9 @@ import java.util.Optional;
 
 @Controller
 public class OrderController {
-
-    private ClientOrder clientOrder;
-    private ItemRepository itemRepository;
-    private OrderRepository orderRepository;
+    private final ClientOrder clientOrder;
+    private final ItemRepository itemRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public OrderController(ClientOrder clientOrder, ItemRepository itemRepository, OrderRepository orderRepository) {

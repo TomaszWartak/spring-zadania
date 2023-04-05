@@ -11,7 +11,7 @@ import java.util.Optional;
 @Controller
 public class ItemController {
 
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
     public ItemController(ItemRepository itemRepository) {

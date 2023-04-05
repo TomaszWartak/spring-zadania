@@ -10,7 +10,7 @@ import java.util.List;
 
 @Controller
 public class OrderPanelController {
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public OrderPanelController(OrderRepository orderRepository) {
@@ -21,10 +21,11 @@ public class OrderPanelController {
     public String getOrders(@RequestParam(required = false) OrderStatus status,
                             Model model) {
         List<Order> orders;
-        if(status == null)
+        if (status == null) {
             orders = orderRepository.findAll();
-        else
+        } else {
             orders = orderRepository.findAllByStatus(status);
+        }
         model.addAttribute("orders", orders);
         return "panel/orders";
     }

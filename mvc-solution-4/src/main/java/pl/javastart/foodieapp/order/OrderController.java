@@ -17,9 +17,9 @@ import java.util.Optional;
 @Controller
 public class OrderController {
 
-    private ClientOrder clientOrder;
-    private ItemRepository itemRepository;
-    private OrderRepository orderRepository;
+    private final ClientOrder clientOrder;
+    private final ItemRepository itemRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public OrderController(ClientOrder clientOrder, ItemRepository itemRepository, OrderRepository orderRepository) {
@@ -32,7 +32,7 @@ public class OrderController {
     public String addItemToOrder(@RequestParam Long itemId, Model model) {
         Optional<Item> item = itemRepository.findById(itemId);
         item.ifPresent(clientOrder::add);
-        if(item.isPresent()) {
+        if (item.isPresent()) {
             model.addAttribute("message", new Message("Dodano", "Do zamówienia dodano: " + item.get().getName()));
         } else {
             model.addAttribute("message", new Message("Nie dodano", "Porano błędne id z menu: " + itemId));

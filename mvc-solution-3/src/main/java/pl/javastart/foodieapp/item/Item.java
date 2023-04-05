@@ -1,6 +1,6 @@
 package pl.javastart.foodieapp.item;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Item {

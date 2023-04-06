@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 class UserResource {
-    private UserService userService;
+    private final UserService userService;
 
     UserResource(UserService userService) {
         this.userService = userService;
@@ -18,9 +18,10 @@ class UserResource {
 
     @GetMapping("")
     public List<UserDto> findAll(@RequestParam(required = false) String lastName) {
-        if(lastName != null)
+        if (lastName != null) {
             return userService.findByLastName(lastName);
-        else
+        } else {
             return userService.findAll();
+        }
     }
 }

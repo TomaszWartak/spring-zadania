@@ -3,7 +3,7 @@ package pl.javastart.equipy.components.inventory.asset;
 import pl.javastart.equipy.components.assignment.Assignment;
 import pl.javastart.equipy.components.inventory.category.Category;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

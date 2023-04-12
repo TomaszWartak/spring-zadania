@@ -1,11 +1,12 @@
 package pl.javastart.equipy.components.assignment;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.javastart.equipy.components.inventory.asset.Asset;
 import pl.javastart.equipy.components.inventory.asset.AssetRepository;
 import pl.javastart.equipy.components.user.User;
 import pl.javastart.equipy.components.user.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -13,9 +14,9 @@ import java.util.Optional;
 @Service
 class AssignmentService {
 
-    private AssignmentRepository assignmentRepository;
-    private AssetRepository assetRepository;
-    private UserRepository userRepository;
+    private final AssignmentRepository assignmentRepository;
+    private final AssetRepository assetRepository;
+    private final UserRepository userRepository;
 
     public AssignmentService(AssignmentRepository assignmentRepository,
                              AssetRepository assetRepository,
@@ -29,16 +30,17 @@ class AssignmentService {
     public LocalDateTime finishAssignment(Long assignmentId) {
         Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
         Assignment assignmentEntity = assignment.orElseThrow(AssignmentNotFoundException::new);
-        if(assignmentEntity.getEnd() != null)
+        if (assignmentEntity.getEnd() != null) {
             throw new AssignmentAlreadyFinishedException();
-        else
+        } else {
             assignmentEntity.setEnd(LocalDateTime.now());
+        }
         return assignmentEntity.getEnd();
     }
 
     AssignmentDto createAssignment(AssignmentDto assignmentDto) {
         Optional<Assignment> activeAssignmentForAsset = assignmentRepository
-                                                        .findByAsset_IdAndEndIsNull(assignmentDto.getAssetId());
+                .findByAsset_IdAndEndIsNull(assignmentDto.getAssetId());
         activeAssignmentForAsset.ifPresent((a) -> {
             throw new InvalidAssignmentException("To wyposażenie jest aktualnie do kogoś przypisane");
         });

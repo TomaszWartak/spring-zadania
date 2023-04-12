@@ -1,15 +1,15 @@
 package pl.javastart.equipy.components.inventory.asset;
 
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 class AssetService {
-
-    private AssetRepository assetRepository;
-    private AssetMapper assetMapper;
+    private final AssetRepository assetRepository;
+    private final AssetMapper assetMapper;
 
     AssetService(AssetRepository assetRepository, AssetMapper assetMapper) {
         this.assetRepository = assetRepository;
@@ -45,8 +45,9 @@ class AssetService {
     AssetDto update(AssetDto asset) {
         Optional<Asset> assetBySerialNo = assetRepository.findBySerialNumber(asset.getSerialNumber());
         assetBySerialNo.ifPresent(a -> {
-            if(!a.getId().equals(asset.getId()))
+            if (!a.getId().equals(asset.getId())) {
                 throw new DuplicateSerialNumberException();
+            }
         });
         return mapAndSave(asset);
     }

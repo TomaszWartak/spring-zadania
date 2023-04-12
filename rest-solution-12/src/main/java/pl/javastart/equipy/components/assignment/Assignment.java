@@ -3,7 +3,7 @@ package pl.javastart.equipy.components.assignment;
 import pl.javastart.equipy.components.inventory.asset.Asset;
 import pl.javastart.equipy.components.user.User;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

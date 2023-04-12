@@ -12,8 +12,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/api/assignments")
 public class AssignmentResource {
-
-    private AssignmentService assignmentService;
+    private final AssignmentService assignmentService;
 
     public AssignmentResource(AssignmentService assignmentService) {
         this.assignmentService = assignmentService;
@@ -36,7 +35,7 @@ public class AssignmentResource {
     }
 
     @PostMapping("/{id}/end")
-    public ResponseEntity finishAssignment(@PathVariable Long id) {
+    public ResponseEntity<?> finishAssignment(@PathVariable Long id) {
         LocalDateTime endDate = assignmentService.finishAssignment(id);
         return ResponseEntity.accepted().body(endDate);
     }

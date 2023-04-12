@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/assets")
 public class AssetResource {
 
-    private AssetService assetService;
+    private final AssetService assetService;
 
     public AssetResource(AssetService assetService) {
         this.assetService = assetService;

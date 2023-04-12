@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 @Service
 class AssetService {
 
-    private AssetRepository assetRepository;
-    private AssetMapper assetMapper;
+    private final AssetRepository assetRepository;
+    private final AssetMapper assetMapper;
 
     AssetService(AssetRepository assetRepository, AssetMapper assetMapper) {
         this.assetRepository = assetRepository;

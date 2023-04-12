@@ -11,7 +11,7 @@ angular.module('app')
         vm.assignments = AssetService.getAssignments(assetId);
         vm.assignments.$promise.then(assignments => {
             const activeAssignment = vm.assignments.filter(a => a.end == null);
-            if(activeAssignment.length) {
+            if (activeAssignment.length) {
                 vm.assigned = true;
             }
         });

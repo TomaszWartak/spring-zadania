@@ -2,10 +2,11 @@ angular.module('app')
     .controller('UserEditController', function($routeParams, $location, $timeout, UserService, User) {
         const vm = this;
         const userId = $routeParams.userId;
-        if(userId)
+        if (userId) {
             vm.user = UserService.get(userId);
-        else
+        } else {
             vm.user = new User();
+        }
 
         const saveCallback = () => {
             $location.path(`/user-edit/${vm.user.id}`);

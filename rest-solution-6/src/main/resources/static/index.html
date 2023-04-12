@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="app">
+<html lang="pl" data-ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title>Equipy - zarządzaj aktywami swojej firmy</title>
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/main.css">
     <!-- Bootstrap -->
     <script src="node_modules/jquery/dist/jquery.slim.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
@@ -35,9 +35,10 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
         <a class="navbar-brand" href="#">Equipy</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -50,17 +51,17 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <main role="main" class="container">
-        <div class="jumbotron jumbo-custom text-white text-center my-2">
-            <h1>Equipy</h1>
-            <p class="lead">System zarządzania wyposażeniem Twojej firmy.</p>
-            <p class="lead">Wszystko w jednym miejscu i pod Twoją kontrolą.</p>
-        </div>
-    </main>
+<main role="main" class="container">
+    <div class="jumbotron jumbo-custom text-white text-center my-2">
+        <h1>Equipy</h1>
+        <p class="lead">System zarządzania wyposażeniem Twojej firmy.</p>
+        <p class="lead">Wszystko w jednym miejscu i pod Twoją kontrolą.</p>
+    </div>
+</main>
 
-    <div ng-view></div>
-
+<div ng-view></div>
 </body>
 </html>

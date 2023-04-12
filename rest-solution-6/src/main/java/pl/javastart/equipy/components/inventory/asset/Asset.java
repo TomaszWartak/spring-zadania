@@ -1,8 +1,7 @@
 package pl.javastart.equipy.components.inventory.asset;
 
 import pl.javastart.equipy.components.inventory.category.Category;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity

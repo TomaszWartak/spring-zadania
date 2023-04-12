@@ -10,8 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/assets")
 public class AssetResource {
-
-    private AssetService assetService;
+    private final AssetService assetService;
 
     public AssetResource(AssetService assetService) {
         this.assetService = assetService;
@@ -19,9 +18,10 @@ public class AssetResource {
 
     @GetMapping("")
     public List<AssetDto> findAll(@RequestParam(required = false) String text) {
-        if(text != null)
+        if (text != null) {
             return assetService.findAllByNameOrSerialNumber(text);
-        else
+        } else {
             return assetService.findAll();
+        }
     }
 }

@@ -11,8 +11,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/assignments")
 public class AssignmentResource {
-
-    private AssignmentService assignmentService;
+    private final AssignmentService assignmentService;
 
     public AssignmentResource(AssignmentService assignmentService) {
         this.assignmentService = assignmentService;

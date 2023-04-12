@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserResource {
-    private UserService userService;
+    private final UserService userService;
 
     UserResource(UserService userService) {
         this.userService = userService;
@@ -20,10 +20,11 @@ public class UserResource {
 
     @GetMapping("")
     public List<UserDto> findAll(@RequestParam(required = false) String lastName) {
-        if(lastName != null)
+        if (lastName != null) {
             return userService.findByLastName(lastName);
-        else
+        } else {
             return userService.findAll();
+        }
     }
 
     @GetMapping("/{id}")
@@ -40,8 +41,12 @@ public class UserResource {
 
     @PostMapping("")
     public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
-        if(user.getId() != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt nie może mieć ustawionego id");
+        if (user.getId() != null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Zapisywany obiekt nie może mieć ustawionego id"
+            );
+        }
         UserDto savedUser = userService.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -53,8 +58,12 @@ public class UserResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto user) {
-        if(!id.equals(user.getId()))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany obiekt musi mieć id zgodne z id w ścieżce zasobu");
+        if (!id.equals(user.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Aktualizowany obiekt musi mieć id zgodne z id w ścieżce zasobu"
+            );
+        }
         UserDto updatedUser = userService.update(user);
         return ResponseEntity.ok(updatedUser);
     }

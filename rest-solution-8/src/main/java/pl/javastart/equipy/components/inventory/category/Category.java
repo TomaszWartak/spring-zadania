@@ -2,7 +2,7 @@ package pl.javastart.equipy.components.inventory.category;
 
 import pl.javastart.equipy.components.inventory.asset.Asset;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

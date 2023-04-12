@@ -20,11 +20,9 @@
         <div class="col-md-6 offset-md-3">
             <div class="form">
                 <div class="input-group mb-2 mr-sm-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
                     <input type="text" class="form-control" id="searchInput" placeholder="Nazwisko" ng-model="lastName">
                     <button class="btn btn-primary mx-1" ng-click="ctrl.search(lastName)">
                         Szukaj użytkownika
@@ -65,7 +63,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="mx-auto">
+        <div class="text-center">
             <h2 ng-if="ctrl.assignments.length">Historia wypożyczeń</h2>
             <h2 ng-if="!ctrl.assignments.length">Brak wypożyczeń</h2>
         </div>

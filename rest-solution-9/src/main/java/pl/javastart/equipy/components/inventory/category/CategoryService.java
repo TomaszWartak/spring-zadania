@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CategoryService {
-
-    private CategoryRepository categoryRepository;
+class CategoryService {
+    private final CategoryRepository categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

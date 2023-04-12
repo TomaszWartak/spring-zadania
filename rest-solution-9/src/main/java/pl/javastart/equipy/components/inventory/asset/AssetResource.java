@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/assets")
 public class AssetResource {
 
-    private AssetService assetService;
+    private final AssetService assetService;
 
     public AssetResource(AssetService assetService) {
         this.assetService = assetService;
@@ -21,10 +21,11 @@ public class AssetResource {
 
     @GetMapping("")
     public List<AssetDto> findAll(@RequestParam(required = false) String text) {
-        if(text != null)
+        if (text != null) {
             return assetService.findAllByNameOrSerialNumber(text);
-        else
+        } else {
             return assetService.findAll();
+        }
     }
 
     @GetMapping("/{id}")
@@ -36,7 +37,7 @@ public class AssetResource {
 
     @PostMapping("")
     public ResponseEntity<AssetDto> save(@RequestBody AssetDto asset) {
-        if(asset.getId() != null)
+        if (asset.getId() != null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt nie może mieć ustawionego id");
         AssetDto savedAsset = assetService.save(asset);
         URI location = ServletUriComponentsBuilder
@@ -50,8 +51,12 @@ public class AssetResource {
     @PutMapping("/{id}")
     public ResponseEntity<AssetDto> update(@PathVariable Long id,
                                            @RequestBody AssetDto asset) {
-        if(!id.equals(asset.getId()))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany obiekt powinien mieć id zgodne z id ścieżki zasobu");
+        if (!id.equals(asset.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Aktualizowany obiekt powinien mieć id zgodne z id ścieżki zasobu"
+            );
+        }
         AssetDto updatedAsset = assetService.update(asset);
         return ResponseEntity.ok(updatedAsset);
     }

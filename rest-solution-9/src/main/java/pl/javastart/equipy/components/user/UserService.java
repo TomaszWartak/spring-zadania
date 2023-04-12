@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 @Service
 class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -46,8 +46,9 @@ class UserService {
     UserDto update(UserDto user) {
         Optional<User> userByPesel = userRepository.findByPesel(user.getPesel());
         userByPesel.ifPresent(u -> {
-            if(!u.getId().equals(user.getId()))
+            if (!u.getId().equals(user.getId())) {
                 throw new DuplicatePeselException();
+            }
         });
         return mapAndSaveUser(user);
     }

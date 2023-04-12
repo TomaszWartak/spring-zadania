@@ -12,8 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/assets")
 public class AssetResource {
-
-    private AssetService assetService;
+    private final AssetService assetService;
 
     public AssetResource(AssetService assetService) {
         this.assetService = assetService;

@@ -1,6 +1,7 @@
 package pl.javastart.di;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.*;
 
 class EntryRepository {
@@ -20,9 +21,9 @@ class EntryRepository {
     }
 
     Set<Entry> getRandomEntries(int number) {
-        Random random = new Random();
+        Random random = new SecureRandom();
         Set<Entry> randomEntries = new HashSet<>();
-        while (randomEntries.size() < number && randomEntries.size() < entries.size()) {
+        while ( (randomEntries.size() < number) && (randomEntries.size() < entries.size()) ) {
             randomEntries.add(entries.get(random.nextInt(entries.size())));
         }
         return randomEntries;
